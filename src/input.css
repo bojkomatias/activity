@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
+}
+
+@layer base {
+  a:focus-visible,
+  button:focus-visible {
+    @apply border-0 outline outline-2 outline-offset-2 outline-cyan-600 ring-0;
+  }
+}

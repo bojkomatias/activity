@@ -1,15 +1,36 @@
 {
-  "name": "activity",
+  "name": "bun-htmx",
   "version": "1.0.50",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run --watch src/index.ts"
+    "dev": "concurrently \"bun run --hot src/index.tsx\" \"bun run tw:dev\"",
+    "production": "bun run tw && bun run src/index.tsx --production",
+    "tw": "bun tailwindcss -i ./src/input.css -o ./src/output.css --minify",
+    "tw:dev": "bun tailwindcss -i ./src/input.css -o ./src/output.css --watch",
+    "db:push": "bunx drizzle-kit push:sqlite",
+    "db:studio": "bunx drizzle-kit studio"
   },
   "dependencies": {
-    "elysia": "latest"
+    "@elysiajs/cookie": "^0.6.1",
+    "@elysiajs/html": "^0.6.5",
+    "@elysiajs/jwt": "^0.6.4",
+    "@elysiajs/swagger": "^0.6.2",
+    "@iconify/json": "^2.2.116",
+    "@libsql/client": "^0.3.5-pre.1",
+    "drizzle-orm": "^0.28.6",
+    "elysia": "^0.6.22"
   },
   "devDependencies": {
-    "bun-types": "latest"
+    "@egoist/tailwindcss-icons": "^1.1.0",
+    "@tailwindcss/forms": "^0.5.6",
+    "better-sqlite3": "^8.6.0",
+    "bun-types": "latest",
+    "clsx": "^2.0.0",
+    "concurrently": "^8.2.0",
+    "drizzle-kit": "^0.19.13",
+    "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.3.3"
   },
-  "module": "src/index.js"
+  "module": "src/index.tsx"
 }

@@ -2,13 +2,6 @@ export const LandingPage = () => (
   <div class="px-4">
     <section class="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
       <div class="mx-auto flex max-w-[64rem] flex-col items-center gap-4 text-center">
-        <a
-          class="bg-muted rounded-2xl px-4 py-1.5 text-sm font-medium"
-          target="_blank"
-          href="https://twitter.com/shadcn"
-        >
-          Follow along on Twitter
-        </a>
         <h1 class="text-3xl font-bold sm:text-5xl md:text-6xl lg:text-7xl">
           An example hypermedia driven app built using Elysia.
         </h1>
@@ -21,7 +14,7 @@ export const LandingPage = () => (
             target="_blank"
             rel="noreferrer"
             class="inline-flex h-11 items-center justify-center rounded-md border px-8 text-sm font-medium dark:border-gray-800"
-            href="https://github.com/"
+            href="https://github.com/bojkomatias/activity"
           >
             GitHub
           </a>

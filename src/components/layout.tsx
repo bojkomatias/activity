@@ -84,11 +84,17 @@ export function Layout({
               <i class="i-lucide-activity h-8 w-8" />
               <p class="flex-auto text-center text-sm leading-loose text-gray-600 dark:text-gray-400 sm:text-left">
                 Built by{" "}
-                <a class="text-black underline underline-offset-2 dark:text-white">
+                <a
+                  href="https://x.com/bojko_matias"
+                  class="text-black underline underline-offset-2 dark:text-white"
+                >
                   bojkomatias
                 </a>
                 . Source code available on{" "}
-                <a class="text-black underline underline-offset-2 dark:text-white">
+                <a
+                  href="https://github.com/bojkomatias/activity"
+                  class="text-black underline underline-offset-2 dark:text-white"
+                >
                   Github
                 </a>
               </p>

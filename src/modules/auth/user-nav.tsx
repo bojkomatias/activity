@@ -4,15 +4,13 @@ import { Hover } from "@/components/hover-transition";
 import { dict } from "@/utils/dictionary";
 import { JWTPayloadSpec } from "@elysiajs/jwt";
 
-type User =
-  | ({
-      id: string;
-      name: string;
-      image: string | null;
-      email: string;
-      role: "customer" | "owner" | "admin";
-    } & JWTPayloadSpec)
-  | null;
+type User = {
+  id: string;
+  name: string;
+  image: string | null;
+  email: string;
+  role: "customer" | "owner" | "admin";
+} & JWTPayloadSpec;
 
 export const UserNavigation = ({ user }: { user: User }) => {
   if (!user) return <></>;
@@ -41,12 +39,13 @@ export const UserNavigation = ({ user }: { user: User }) => {
         <Dropdown.Separator />
         <Hover>
           <Hover.Item>
-            <Dropdown.Item as="a" href="/d/business" hx-boost="true">
-              {dict.get("dashboard")}
-            </Dropdown.Item>
-          </Hover.Item>
-          <Hover.Item>
-            <Dropdown.Item as="a" href="/d/settings" hx-boost="true">
+            <Dropdown.Item
+              as="a"
+              hx-get="/dashboard/settings"
+              hx-push-url="true"
+              hx-target="body"
+              hx-swap="outerHTML"
+            >
               {dict.get("settings")}
               <i class="i-lucide-settings" />
             </Dropdown.Item>
@@ -55,13 +54,19 @@ export const UserNavigation = ({ user }: { user: User }) => {
           <Dropdown.Separator />
 
           <Hover.Item>
-            <Dropdown.Item as="a" href="/" hx-boost="true">
+            <Dropdown.Item
+              as="a"
+              hx-get="/"
+              hx-push-url="true"
+              hx-target="body"
+              hx-swap="outerHTML"
+            >
               Página de inicio <i class="i-lucide-external-link" />
             </Dropdown.Item>
           </Hover.Item>
           <Hover.Item>
             <Dropdown.Item
-              hx-post="/auth/logout"
+              hx-post="/api/auth/logout"
               hx-push-url="true"
               hx-target="body"
               hx-swap="outerHTML"

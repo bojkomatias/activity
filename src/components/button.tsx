@@ -24,7 +24,7 @@ export const Button = ({ intent, size, children, ...props }: ButtonProps) => {
 
 export const buttonStyles = (props: ButtonProps) => {
   return cx(
-    "group inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 py-2 text-md font-medium transition-colors first-letter:capitalize focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-border disabled:pointer-events-none disabled:opacity-50",
+    "text-md group inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-md px-4 py-2 font-medium transition-colors first-letter:capitalize focus-visible:outline focus-visible:outline-offset-1 focus-visible:outline-border disabled:pointer-events-none disabled:opacity-50",
     props.intent === "primary" &&
       "bg-primary font-semibold text-primary-foreground shadow hover:bg-primary/90 focus-visible:ring-offset-1",
     props.intent === "secondary" &&
@@ -36,7 +36,7 @@ export const buttonStyles = (props: ButtonProps) => {
     props.intent === "destructive" &&
       "bg-destructive text-destructive-foreground hover:bg-destructive/90",
     props.intent === "link" &&
-      "p-0 text-accent-foreground underline-offset-4 hover:underline hover:decoration-primary",
+      "p-0 text-accent-foreground decoration-2 underline-offset-4 hover:underline hover:decoration-primary",
     props.size === "lg" && "h-11 rounded-md px-6",
     props.size === "sm" && "h-8 rounded-md px-3.5 text-sm",
     props.size === "xs" && "h-6 rounded-md px-2.5 text-xs",

@@ -29,7 +29,7 @@ Dropdown.Content = ({
     {...props}
     class={cx(
       "dropdown absolute z-10 w-64 rounded-xl bg-card p-2 shadow ring-1 ring-border",
-      "-translate-y-1 scale-95 opacity-0 transition ease-out",
+      "-translate-y-1 scale-95 opacity-0",
       position === "top-left" && "left-0 mt-1 origin-top-left",
       position === "top-right" && "right-0 mt-1 origin-top-right",
       position === "right-top" && "right-full top-0 mr-1 origin-top-right",
@@ -38,7 +38,7 @@ Dropdown.Content = ({
     _="on click halt bubbling end
     on toggle if @class contains 'dropdown-visible' send close to me else send open to me end
     on open take .dropdown-visible wait then remove .opacity-0 .scale-95 .-translate-y-1 end
-    on close add .opacity-0 .scale-95 .-translate-y-1 wait 0.05s then remove .dropdown-visible end"
+    on close wait then add .opacity-0 .scale-95 .-translate-y-1 wait 0.05s then remove .dropdown-visible end"
   >
     {props.children}
   </div>

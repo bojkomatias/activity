@@ -1,6 +1,7 @@
 import Elysia from "elysia";
 import { MarketingLayout } from "@/app/marketing-layout";
 import setup from "@/routes/(setup)";
+import { Button } from "@/components/button";
 
 const marketingPage = new Elysia({
   name: "marketing-page",
@@ -17,7 +18,18 @@ const marketingPage = new Elysia({
     },
     (app) =>
       app.get("/", async () => {
-        return <MarketingLayout>Hi</MarketingLayout>;
+        return (
+          <MarketingLayout>
+            <Button
+              hx-get="/dashboard/settings"
+              hx-push-url="true"
+              hx-target="body"
+              hx-swap="outerHTML"
+            >
+              Settings
+            </Button>
+          </MarketingLayout>
+        );
       }),
   );
 

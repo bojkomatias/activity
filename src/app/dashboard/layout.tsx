@@ -4,23 +4,28 @@ import { dict } from "@/utils/dictionary";
 import { BaseLayout } from "../layout";
 import { Hover } from "../../components/hover-transition";
 import { Button } from "../../components/button";
+import { UserNavigation } from "@/modules/auth/user-nav";
+import { JWTPayloadSpec } from "@elysiajs/jwt";
+
+type User = {
+  id: string;
+  name: string;
+  image: string | null;
+  email: string;
+  role: "customer" | "owner" | "admin";
+} & JWTPayloadSpec;
 
 export const DashboardLayout = ({
-  role,
+  token,
   children,
 }: {
-  role: Role;
+  token: User;
   children?: any;
 }) => (
   <BaseLayout>
     <header class="flex flex-col items-end border-b border-border pt-2">
-      <div
-        hx-get="/auth/navigation"
-        hx-swap="outerHTML"
-        hx-trigger="load"
-        class="h-8"
-      />
-      <Tabs role={role} />
+      <UserNavigation user={token} />
+      <Tabs role={token.role} />
     </header>
 
     <main id="dashboard-content" class="min-h-screen pb-8">

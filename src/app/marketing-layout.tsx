@@ -12,7 +12,7 @@ export function MarketingLayout({ children }: { children: any }) {
         >
           {siteConfig.name}
         </a>
-        <div hx-get="/auth/status" hx-trigger="load" hx-swap="outerHTML" />
+        <div hx-get="/api/auth/status" hx-trigger="load" hx-swap="outerHTML" />
       </header>
       <main class="min-h-screen pb-8">{children}</main>
     </BaseLayout>

@@ -43,9 +43,15 @@ export function BaseLayout({ children }: { children?: any }) {
         class="w-screen overflow-x-hidden bg-background text-foreground antialiased"
         hx-boost="true"
         hx-ext="response-targets, preload"
-        _="on click send close to .dropdown end"
+        _="on click send close to .dropdown end
+        on mousemove throttled at 20ms send move(x:event.clientX, y:event.clientY) to #radial-gradient end"
+
         // Handles click outside for all menus
       >
+        <div
+          id="radial-gradient"
+          _="on move(x,y) set my.style.left to (x-1500) set my.style.top to (y-1500)"
+        />
         {/* Notifications fall all here! */}
         <div id="notification" />
         <div id="page-content" class="min-h-[100svh]">

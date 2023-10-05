@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   /* * {
     @apply border-[0.5px];
@@ -25,7 +24,7 @@
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
 
-    --primary: 44 100% 58%;
+    --primary: 200 88% 37%;
     --primary-foreground: 0 0% 98%;
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
@@ -45,8 +44,8 @@
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
 
-    --primary: 44 100% 58%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 336 88% 45%;
+    --primary-foreground: 0 0% 98%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -59,13 +58,17 @@
 
 @layer utilities {
   .dropdown {
-    @apply hidden;
+    @apply hidden transition duration-75 ease-in;
   }
   .dropdown-visible {
-    @apply !flex flex-col;
+    @apply !flex flex-col duration-200 ease-out;
   }
   i {
     @apply group-hover:text-primary group-focus:text-primary;
+  }
+
+  #radial-gradient {
+    @apply bg-gradient-radial pointer-events-none fixed -z-10 h-[3000px] w-[3000px] rounded-full from-muted/40 to-transparent to-60%;
   }
 }
 

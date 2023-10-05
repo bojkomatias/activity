@@ -12,4 +12,4 @@ const client = createClient({
   authToken: Bun.env.DATABASE_AUTH_TOKEN,
 });
 
-export const db = drizzle(client);
+export const db = drizzle(client, { logger: true });

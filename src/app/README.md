@@ -1,5 +1,5 @@
 ### App
 
-Pages and Layouts
+Pages, Layouts and Routes
 
-Visible pages and URIs to the client.
+Aim to keep ordered as a file-based routing.

@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia";
 import { DashboardLayout } from "../layout";
 import { getUserById } from "@/services/user";
-import settingsApi from "@/routes/dashboard/settings";
+import settingsRoute from "./route";
 import { DashboardHeading } from "@/components/dashboard/heading";
 import { DashboardContent } from "@/components/dashboard/wrapper";
 import { PasswordChange } from "@/modules/settings/password-change";
@@ -13,7 +13,7 @@ import { cx } from "@/utils/cx";
 const settingsPage = new Elysia({
   name: "settings-page",
 })
-  .use(settingsApi)
+  .use(settingsRoute)
   .get(
     "/dashboard/settings",
     async ({ token }) => {
@@ -68,6 +68,20 @@ const settingsPage = new Elysia({
       },
       response: t.String(),
     },
-  );
+  )
+  .onBeforeHandle(({ request, set }) => {
+    if (request.method === "GET") {
+      // Change to false, indicating data is refreshed
+      set.headers["settings"] = "false";
+      // Set that the request varies if the headers has changed (on post / put)
+      set.headers["Vary"] = "settings, hx-request";
+      // Add cache control
+      set.headers["Cache-Control"] = "public, max-age=300, must-revalidate";
+    }
+    if (request.method === "PATCH" || request.method === "POST") {
+      // Change to true, indicating resource is modified
+      set.headers["settings"] = "true";
+    }
+  });
 
 export default settingsPage;

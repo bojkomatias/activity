@@ -1,30 +1,15 @@
 import { InsertUser, userSchema } from "@/db/schema/user";
 import Profile from "@/modules/settings/profile";
-import setup from "@/routes/(setup)";
+import setup from "@/config/setup";
 import { getUserById, updateUserAttribute } from "@/services/user";
-
 import { Notification } from "@/components/notification";
 import Elysia, { t } from "elysia";
 
-const settingsApi = new Elysia({
-  name: "settings-api",
+const settingsRoute = new Elysia({
+  name: "settings-route",
   prefix: "/api/settings",
 })
   .use(setup)
-  .onBeforeHandle(({ request, set }) => {
-    if (request.method === "GET") {
-      // Change to false, indicating data is refreshed
-      set.headers["settings"] = "false";
-      // Set that the request varies if the headers has changed (on post / put)
-      set.headers["Vary"] = "settings, hx-request";
-      // Add cache control
-      set.headers["Cache-Control"] = "public, max-age=300, must-revalidate";
-    }
-    if (request.method === "PATCH" || request.method === "POST") {
-      // Change to true, indicating resource is modified
-      set.headers["settings"] = "true";
-    }
-  })
   .get("/:id/:attr", ({ params: { id, attr }, query }) => (
     <Profile.Attribute
       id={id}
@@ -84,4 +69,4 @@ const settingsApi = new Elysia({
     },
   );
 
-export default settingsApi;
+export default settingsRoute;

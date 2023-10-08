@@ -1,7 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+const { withTV } = require('tailwind-variants/transformer')
 const { iconsPlugin, getIconCollections } = require("@egoist/tailwindcss-icons")
 
-export default {
+export default withTV({
   darkMode: 'class',
   content: ["./src/**/*.{html,tsx}"],
   theme: {
@@ -52,4 +53,4 @@ export default {
       collections: getIconCollections(["lucide"]),
     }),
   ],
-};
+})

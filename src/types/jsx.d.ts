@@ -12,10 +12,10 @@ declare namespace JSX {
   interface HtmlTag {
     // Get without starts with api, because it can be used as href
     ["hx-get"]?: GetRoutes;
-    ["hx-post"]?: StartsWithApi<PostRoutes>;
-    ["hx-put"]?: StartsWithApi<PutRoutes>;
-    ["hx-delete"]?: StartsWithApi<DeleteRoutes>;
-    ["hx-patch"]?: StartsWithApi<PatchRoutes>;
+    ["hx-post"]?: PostRoutes;
+    ["hx-put"]?: PutRoutes;
+    ["hx-delete"]?: DeleteRoutes;
+    ["hx-patch"]?: PatchRoutes;
     // Hyperscript tag to insert JS
     ["_"]?: string;
     /**
@@ -56,7 +56,3 @@ type RouterPattern<T extends string> =
     : T extends `${infer Start}*`
     ? `${Start}${string}`
     : T;
-
-type StartsWithApi<T extends string> = T extends `${"/api"}${infer Rest}`
-  ? T
-  : never;

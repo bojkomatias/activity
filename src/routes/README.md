@@ -1,3 +1,0 @@
-## Route handlers
-
-API Routes

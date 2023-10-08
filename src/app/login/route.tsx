@@ -1,4 +1,4 @@
-import setup from "@/routes/(setup)";
+import setup from "@/config/setup";
 import OAuth2 from "@/utils/oauth2";
 import Elysia from "elysia";
 import { Notification } from "@/components/notification";
@@ -81,7 +81,7 @@ const authApi = new Elysia({ name: "auth", prefix: "/api/auth" })
     if (token) return (set.redirect = "/auth/navigation");
     return <LoginButton />;
   })
-  .get("/navigation", ({ token }) => <UserNavigation user={token} />, {
+  .get("/navigation", ({ token }) => <UserNavigation user={token!} />, {
     beforeHandle: ({ token, set }) => {
       if (!token) {
         set.status = 401;

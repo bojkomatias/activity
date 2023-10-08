@@ -1,8 +1,8 @@
 import { randomBytes } from "crypto";
 import Elysia, { t } from "elysia";
 import { AuthForm } from "@/modules/auth/auth-form";
-import authApi from "@/routes/auth";
 import { BaseLayout } from "../layout";
+import authApi from "./route";
 
 const hasher = new Bun.CryptoHasher("sha256");
 

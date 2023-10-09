@@ -19,7 +19,7 @@ export const UserNavigation = ({ user }: { user: User }) => {
       <button
         class={button({
           class:
-            "flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-muted/50 text-lg font-semibold uppercase text-muted-foreground ring-1 ring-border hover:bg-muted hover:text-foreground hover:ring-ring/50 hover:ring-offset-2 hover:ring-offset-background focus:ring-offset-2 focus:ring-offset-background",
+            "flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-muted/50 text-lg font-semibold uppercase text-muted-foreground ring-1 ring-border hover:bg-muted hover:text-foreground hover:ring-ring hover:ring-offset-2 hover:ring-offset-background focus:ring-offset-2 focus:ring-offset-background",
         })}
         _={_trigger}
       >

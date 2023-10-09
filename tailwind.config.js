@@ -10,8 +10,7 @@ export default withTV({
       fontFamily: { sans: ['Sora', 'sans'], },
       colors: {
         border: "hsl(var(--border) / 0.1)",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring) / 0.3)",
+        ring: "hsl(var(--ring)/0.2)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -40,9 +39,9 @@ export default withTV({
         },
       },
       borderRadius: {
-        xl: `calc(var(--radius) + 4px)`,
-        lg: `var(--radius)`,
-        md: `calc(var(--radius) - 2px)`,
+        xl: "calc(var(--radius) + 4px)",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {

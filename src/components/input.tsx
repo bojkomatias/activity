@@ -16,7 +16,7 @@ export function Input({ options, ...props }: Props) {
   return (
     <div
       class={cx(
-        "group relative -my-px flex flex-col-reverse bg-background px-3 pb-1 pt-2 ring-1 ring-inset ring-border focus-within:z-10 focus-within:ring-2 focus-within:ring-ring/50",
+        "group relative -my-px flex flex-col-reverse bg-background px-3 pb-1 pt-2 ring-1 ring-inset ring-border focus-within:z-10 focus-within:ring-2 focus-within:ring-ring",
         props.rt && "rounded-t-lg",
         props.rb && "rounded-b-lg",
         props.class,
@@ -61,7 +61,7 @@ export function Input({ options, ...props }: Props) {
       <label
         for={props.name}
         class={cx(
-          "z-20 block select-none text-xs font-medium text-muted-foreground first-letter:capitalize after:ml-0.5 group-focus-within:text-foreground peer-placeholder-shown:!text-accent-foreground peer-required:after:content-['*'] peer-invalid:text-destructive",
+          "z-20 block select-none text-xs font-medium text-card-foreground first-letter:capitalize after:ml-0.5 group-focus-within:text-foreground peer-placeholder-shown:!text-muted-foreground peer-required:after:content-['*'] peer-invalid:text-destructive",
           props.type == "checkbox" && "mb-1 ml-6 mt-px",
           props.labelClass,
         )}

@@ -1,11 +1,11 @@
 import { cx } from "@/utils/cx";
-import Table from "../table";
 import { _trigger, dropdown, _content } from "@/components/dropdown";
 import { button } from "../button";
 import { SearchBar } from "../search-bar";
 import { Hover } from "../hover-transition";
 import { Action, Column } from "./utils";
 import { dict } from "@/utils/dictionary";
+import { table } from "@/components/table";
 
 export function DataTable<T>({
   children,
@@ -75,57 +75,59 @@ export function DataTable<T>({
           </div>
         </div>
       </div>
-      <Table>
-        <colgroup>
-          {columns.map(({ col, accessor, hidden }) => (
-            <col id={String(accessor)} class={cx(col, hidden && "hidden")} />
-          ))}
-          <col class={"w-10"} />
-        </colgroup>
-        <Table.Head>
-          <Table.Row>
-            {columns.map(({ accessor, header, sortable }) => (
-              <Table.HCell
-                _={`init if #${String(
-                  accessor,
-                )} @class contains 'hidden' then add .hidden end`}
-                class={cx(String(accessor))}
-              >
-                {sortable ? (
-                  <button
-                    hx-get={search?.["hx-get"]}
-                    hx-vals={`{ "orderBy": "${String(
-                      accessor,
-                    )}", "sort": "asc" }`}
-                    hx-target="next tbody"
-                    hx-swap="innerHTML"
-                    class={button({ intent: "ghost", size: "xs" })}
-                    _={`on click if @hx-vals contains 'asc' 
+      <div class={table().wrapper()}>
+        <table class={table().base()}>
+          <colgroup>
+            {columns.map(({ col, accessor, hidden }) => (
+              <col id={String(accessor)} class={cx(col, hidden && "hidden")} />
+            ))}
+            <col class={"w-10"} />
+          </colgroup>
+          <thead class={table().head()}>
+            <tr class={table().tr()}>
+              {columns.map(({ accessor, header, sortable }) => (
+                <th
+                  class={table().th({ class: String(accessor) })}
+                  _={`init if #${String(
+                    accessor,
+                  )} @class contains 'hidden' then add .hidden end`}
+                >
+                  {sortable ? (
+                    <button
+                      hx-get={search?.["hx-get"]}
+                      hx-vals={`{ "orderBy": "${String(
+                        accessor,
+                      )}", "sort": "asc" }`}
+                      hx-target="next tbody"
+                      hx-swap="innerHTML"
+                      class={button({ intent: "ghost", size: "xs" })}
+                      _={`on click if @hx-vals contains 'asc' 
                         then set @hx-vals to '{ "orderBy": "${String(
                           accessor,
                         )}", "sort": "desc" }'
                         else set @hx-vals to '{ "orderBy": "${String(
                           accessor,
                         )}", "sort": "asc" }'`}
-                  >
-                    {header ? header : dict.get(accessor)}
-                    <i class="i-lucide-chevrons-up-down" />
-                  </button>
-                ) : (
-                  <span class="text-accent-foreground">
-                    {header ? header : dict.get(accessor)}
-                  </span>
-                )}
-              </Table.HCell>
-            ))}
-            {/* Extra action column */}
-            <Table.HCell class={"actions"}>
-              <span class="sr-only">Actions</span>
-            </Table.HCell>
-          </Table.Row>
-        </Table.Head>
-        <Table.Body>{children}</Table.Body>
-      </Table>
+                    >
+                      {header ? header : dict.get(accessor)}
+                      <i class="i-lucide-chevrons-up-down" />
+                    </button>
+                  ) : (
+                    <span class="text-accent-foreground">
+                      {header ? header : dict.get(accessor)}
+                    </span>
+                  )}
+                </th>
+              ))}
+              {/* Extra action column */}
+              <th class={table().th({ class: "actions" })}>
+                <span class="sr-only">Actions</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class={table().body()}>{children}</tbody>
+        </table>
+      </div>
     </>
   );
 }
@@ -144,18 +146,18 @@ export function DataRows<T>({
   return (
     <>
       {data.map((d) => (
-        <Table.Row>
+        <tr class={table().tr()}>
           {columns.map(({ accessor, cell }) => (
-            <Table.Cell
+            <td
+              class={table().td({ class: String(accessor) })}
               _={`init if #${String(
                 accessor,
               )} @class contains 'hidden' then add .hidden end`}
-              class={cx(String(accessor))}
             >
               {cell ? cell(d) : d[accessor]}
-            </Table.Cell>
+            </td>
           ))}
-          <Table.Cell class={"actions"}>
+          <td class={table().td({ class: "actions" })}>
             {actions.length > 0 ? (
               actions.length > 1 ? (
                 <div class={dropdown().base()}>
@@ -181,11 +183,11 @@ export function DataRows<T>({
                 <button class={button({ size: "xs" })} {...actions[0](d)} />
               )
             ) : null}
-          </Table.Cell>
-        </Table.Row>
+          </td>
+        </tr>
       ))}
       {next ? (
-        <Table.Row
+        <tr
           hx-get={next}
           hx-swap="outerHTML"
           hx-target="this"

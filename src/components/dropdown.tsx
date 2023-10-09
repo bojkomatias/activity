@@ -6,11 +6,11 @@ export const dropdown = tv({
     base: "relative inline-block text-left",
     header: "px-3 py-2",
     content:
-      "dropdown absolute z-10 w-64 rounded-xl bg-card p-2 shadow ring-1 ring-border -translate-y-1 scale-95 opacity-0",
+      "dropdown absolute z-10 w-64 -translate-y-1 scale-95 rounded-xl bg-card p-2 opacity-0 shadow ring-1 ring-border",
     separator: "my-1 h-0 border-t border-border",
     item: [
       button(),
-      "text-muted-foreground font-normal w-full justify-between my-1",
+      "h-11 w-full justify-between font-normal text-muted-foreground",
     ],
   },
   variants: {

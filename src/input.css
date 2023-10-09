@@ -17,44 +17,46 @@
   }
 
   :root {
-    --background: 240 100% 100%;
-    --foreground: 191 100% 6%;
-    --card: 0 0% 95%;
-    --card-foreground: 192 100% 8%;
-    --muted: 24 22% 93%;
-    --muted-foreground: 191 100% 12%;
+    --background: 45 80% 98%;
+    --foreground: 206 14% 9%;
+    --card: 50 30% 96%;
+    --card-foreground: 203 14% 11%;
+    --muted: 0 0% 88%;
+    --muted-foreground: 205 15% 16%;
 
-    --primary: 35 100% 58%;
-    --primary-foreground: 191 100% 6%;
-    --secondary: 190 42% 65%;
-    --secondary-foreground: 191 100% 6%;
-    --accent: 177 100% 21%;
-    --accent-foreground: 0 0% 98%;
+    --primary: 0 100% 38%;
+    --primary-foreground: 0 0% 99%;
+    --secondary: 17 100% 53%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 58 85% 55%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 191 100% 12%;
+    --border: var(--muted-foreground);
+    --ring: var(--foreground);
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 191 100% 6%;
-    --foreground: 240 100% 100%;
-    --card: 192 100% 8%;
-    --card-foreground: 0 0% 95%;
-    --muted: 191 100% 12%;
-    --muted-foreground: 24 22% 93%;
+    --background: 206 14% 9%;
+    --foreground: 45 80% 98%;
+    --card: 203 14% 11%;
+    --card-foreground: 50 30% 96%;
+    --muted: 205 15% 16%;
+    --muted-foreground: 0 0% 88%;
 
-    --primary: 35 100% 58%;
-    --primary-foreground: 191 100% 6%;
-    --secondary: 190 42% 65%;
-    --secondary-foreground: 191 100% 6%;
-    --accent: 177 100% 21%;
-    --accent-foreground: 0 0% 98%;
+    --primary: 0 100% 38%;
+    --primary-foreground: 0 0% 99%;
+    --secondary: 17 100% 53%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 58 85% 55%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 24 22% 93%;
+    --border: var(--muted-foreground);
+    --ring: var(--foreground);
   }
 }
 
@@ -70,7 +72,7 @@
   }
 
   #radial-gradient {
-    @apply pointer-events-none fixed -z-10 h-[1000px] w-[1000px] rounded-full bg-gradient-radial from-accent/5 via-muted/5 via-25% to-transparent to-70%;
+    @apply pointer-events-none fixed -z-10 h-[1000px] w-[1000px] rounded-full bg-gradient-radial from-accent/5 via-primary/5 via-25% to-transparent to-70%;
   }
 }
 

@@ -2,7 +2,7 @@ import { cx } from "@/utils/cx";
 
 export const SearchBar = (props: JSX.HtmlInputTag & { key: string }) => {
   return (
-    <div class={cx("group relative h-10", props.class)}>
+    <div class={cx("group relative h-9", props.class)}>
       <input
         {...props}
         type="text"

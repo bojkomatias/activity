@@ -1,3 +1,5 @@
+import { button } from "./button";
+
 export const Notification = ({
   title,
   description,
@@ -37,8 +39,8 @@ export const Notification = ({
           </div>
           <div class="ml-4 flex flex-shrink-0">
             <button
+              class={button({ intent: "ghost", size: "xs" })}
               type="button"
-              class="inline-flex rounded-lg p-1 focus-within:outline-gray-500 hover:bg-gray-50 focus:outline focus:outline-gray-500 focus-visible:outline-offset-0 dark:hover:bg-gray-900"
               _="on click send close to #notification"
             >
               <span class="sr-only">Close</span>

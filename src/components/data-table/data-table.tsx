@@ -1,7 +1,7 @@
 import { cx } from "@/utils/cx";
 import Table from "../table";
-import Dropdown from "../dropdown";
-import { Button } from "../button";
+import { _trigger, dropdown, _content } from "@/components/dropdown";
+import { button } from "../button";
 import { SearchBar } from "../search-bar";
 import { Hover } from "../hover-transition";
 import { Action, Column } from "./utils";
@@ -15,7 +15,7 @@ export function DataTable<T>({
   children: any;
   columns: Column<T>[];
   search?: {
-    "hx-get": string;
+    "hx-get": GetRoutes;
     id: string;
     name: string;
     placeholder?: string;
@@ -35,25 +35,28 @@ export function DataTable<T>({
             class="flex-grow"
           />
         ) : null}
-        <Button intent="outline" size="icon">
+        <button class={button({ intent: "outline", size: "icon" })}>
           <i class="i-lucide-sliders" />
-        </Button>
+        </button>
         {/* Column Visibility */}
-        <Dropdown>
-          <Dropdown.Trigger intent="outline" size="icon">
+        <div class={dropdown().base()}>
+          <button
+            class={button({ intent: "outline", size: "icon" })}
+            _={_trigger}
+          >
             <i class="i-lucide-table-properties" />
-          </Dropdown.Trigger>
-          <Dropdown.Content class="w-48">
-            <Dropdown.Header class="text-sm font-semibold">
+          </button>
+          <div class={dropdown().content()} _={_content}>
+            <div class={dropdown().header({ class: "text-sm font-semibold" })}>
               Columnas
-            </Dropdown.Header>
-            <Dropdown.Separator />
+            </div>
+            <div class={dropdown().separator()} />
             <Hover>
               {columns
                 .filter((e) => !e.disableHiding)
                 .map(({ accessor, header, hidden }) => (
                   <Hover.Item>
-                    <Dropdown.Item
+                    <button
                       _={`on click tell #${String(
                         accessor,
                       )} in next <colgroup/> toggle .hidden end
@@ -61,16 +64,16 @@ export function DataTable<T>({
                     accessor,
                   )} in next <table/> toggle .hidden end
                     on click toggle .hidden on <i/> in me`}
-                      size="sm"
+                      class={dropdown().item()}
                     >
                       <span> {header ? header : dict.get(accessor)}</span>
                       <i class={cx("i-lucide-check", hidden && "hidden")} />
-                    </Dropdown.Item>
+                    </button>
                   </Hover.Item>
                 ))}
             </Hover>
-          </Dropdown.Content>
-        </Dropdown>
+          </div>
+        </div>
       </div>
       <Table>
         <colgroup>
@@ -89,16 +92,14 @@ export function DataTable<T>({
                 class={cx(String(accessor))}
               >
                 {sortable ? (
-                  <Button
+                  <button
                     hx-get={search?.["hx-get"]}
                     hx-vals={`{ "orderBy": "${String(
                       accessor,
                     )}", "sort": "asc" }`}
                     hx-target="next tbody"
                     hx-swap="innerHTML"
-                    intent="ghost"
-                    size="xs"
-                    class="-ml-2.5 font-semibold text-accent-foreground hover:text-foreground"
+                    class={button({ intent: "ghost", size: "xs" })}
                     _={`on click if @hx-vals contains 'asc' 
                         then set @hx-vals to '{ "orderBy": "${String(
                           accessor,
@@ -109,7 +110,7 @@ export function DataTable<T>({
                   >
                     {header ? header : dict.get(accessor)}
                     <i class="i-lucide-chevrons-up-down" />
-                  </Button>
+                  </button>
                 ) : (
                   <span class="text-accent-foreground">
                     {header ? header : dict.get(accessor)}
@@ -138,7 +139,7 @@ export function DataRows<T>({
   data: T[];
   columns: Column<T>[];
   actions: Action<T>[];
-  next?: string;
+  next?: GetRoutes;
 }) {
   return (
     <>
@@ -157,25 +158,27 @@ export function DataRows<T>({
           <Table.Cell class={"actions"}>
             {actions.length > 0 ? (
               actions.length > 1 ? (
-                <Dropdown>
-                  <Dropdown.Trigger intent="ghost" size="icon-sm">
+                <div class={dropdown().base()}>
+                  <button
+                    class={button({ intent: "ghost", size: "icon-xs" })}
+                    _={_trigger}
+                  >
                     <i class="i-lucide-more-horizontal" />
-                  </Dropdown.Trigger>
-                  <Dropdown.Content position="right-top" class="w-32 min-w-fit">
+                  </button>
+                  <div
+                    class={dropdown().content({ class: "w-32 min-w-fit" })}
+                    _={_content}
+                  >
                     {actions.map(
                       (action) =>
                         action(d) && (
-                          <Dropdown.Item
-                            intent="ghost"
-                            size="sm"
-                            {...action(d)}
-                          />
+                          <button class={dropdown().item({})} {...action(d)} />
                         ),
                     )}
-                  </Dropdown.Content>
-                </Dropdown>
+                  </div>
+                </div>
               ) : (
-                <Button intent="secondary" size="xs" {...actions[0](d)} />
+                <button class={button({ size: "xs" })} {...actions[0](d)} />
               )
             ) : null}
           </Table.Cell>

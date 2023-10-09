@@ -1,47 +1,44 @@
 import { InsertUser, SelectUser } from "@/db/schema/user";
-import { Button } from "@/components/button";
-import Card from "@/components/card";
-import Details from "@/components/detail-list";
+import { details } from "@/components/detail-list";
 import { Input } from "@/components/input";
 import { dict } from "@/utils/dictionary";
+import { card } from "@/components/card";
+import { button } from "@/components/button";
 
 const Profile = ({ user }: { user: SelectUser }) => (
-  <Card>
-    <Card.Header>
-      <Card.Title>Perfil</Card.Title>
-      <Card.Description>
-        Datos de tu perfil, tené en cuenta que algunos datos son públicos
-      </Card.Description>
-    </Card.Header>
-    <Card.Content class="px-0">
-      <Details>
-        <Details.Detail>
-          <Details.Term>{dict.get("id")}</Details.Term>
-          <Details.Description>{user.id}</Details.Description>
-        </Details.Detail>
-        <Details.Detail>
-          <Details.Term>{dict.get("name")}</Details.Term>
-          <Details.Description>
+  <div class={card().base()}>
+    <h2 class={card().title()}>Perfil</h2>
+    <p class={card().description()}>
+      Datos de tu perfil, tené en cuenta que algunos datos son públicos
+    </p>
+
+    <div class={card().content({ class: "px-0" })}>
+      <dl class={details().dl()}>
+        <div class={details().item()}>
+          <dt class={details().dt()}>{dict.get("id")}</dt>
+          <dd class={details().dd()}>{user.id}</dd>
+        </div>
+        <div class={details().item()}>
+          <dt class={details().dt()}>{dict.get("name")}</dt>
+          <dd class={details().dd()}>
             <Profile.Attribute
               id={user.id}
               attribute="name"
               value={user.name}
             />
-          </Details.Description>
-        </Details.Detail>
-        <Details.Detail>
-          <Details.Term>{dict.get("email")}</Details.Term>
-          <Details.Description>{user.email}</Details.Description>
-        </Details.Detail>
-        <Details.Detail>
-          <Details.Term>{dict.get("role")}</Details.Term>
-          <Details.Description class="text-xs uppercase">
-            {user.role}
-          </Details.Description>
-        </Details.Detail>
-      </Details>
-    </Card.Content>
-  </Card>
+          </dd>
+        </div>
+        <div class={details().item()}>
+          <dt class={details().dt()}>{dict.get("email")}</dt>
+          <dd class={details().dd()}>{user.email}</dd>
+        </div>
+        <div class={details().item()}>
+          <dt class={details().dt()}>{dict.get("role")}</dt>
+          <dd class="text-xs uppercase">{user.role}</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
 );
 
 Profile.Attribute = ({
@@ -56,15 +53,14 @@ Profile.Attribute = ({
   return (
     <>
       <span safe>{value}</span>
-      <Button
-        hx-get={`/d/settings/${id}/${attribute}/edit?value=${value}`}
+      <button
+        hx-get={`/api/settings/${id}/${attribute}/edit?value=${value}`}
         hx-target="closest dd"
         hx-swap="innerHTML"
-        intent="secondary"
-        size="xs"
+        class={button({ size: "xs" })}
       >
         {dict.get("update")}
-      </Button>
+      </button>
     </>
   );
 };
@@ -80,7 +76,7 @@ Profile.AttributeEdit = ({
 }) => {
   return (
     <form
-      hx-patch={`/d/settings/${id}`}
+      hx-patch={`/api/settings/${id}`}
       hx-target="this"
       hx-swap="outerHTML"
       class="mt-4 flex h-8 items-center gap-x-4 sm:mt-0"
@@ -94,17 +90,16 @@ Profile.AttributeEdit = ({
         rb
       />
       <span class="flex gap-2">
-        <Button size="xs" intent="primary">
+        <button class={button({ intent: "primary", size: "xs" })}>
           {dict.get("save")}
-        </Button>
-        <Button
-          hx-get={`/d/settings/${id}/${attribute}?value=${value}`}
-          size="xs"
-          intent="secondary"
+        </button>
+        <button
+          hx-get={`/api/settings/${id}/${attribute}?value=${value}`}
           type="reset"
+          class={button({ size: "xs" })}
         >
           {dict.get("cancel")}
-        </Button>
+        </button>
       </span>
     </form>
   );

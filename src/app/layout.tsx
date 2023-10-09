@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 import DarkMode from "../components/dark-mode-toggle";
-import { buttonStyles } from "../components/button";
+import { button } from "@/components/button";
 
 /** Used to inject into other layouts */
 export function BaseLayout({ children }: { children?: any }) {
@@ -40,7 +40,7 @@ export function BaseLayout({ children }: { children?: any }) {
         <title>{siteConfig.name}</title>
       </head>
       <body
-        class="w-screen overflow-x-hidden bg-background text-foreground antialiased"
+        class="w-screen overflow-x-hidden bg-background bg-cover text-foreground antialiased"
         hx-boost="true"
         hx-ext="response-targets, preload"
         _="on click send close to .dropdown end
@@ -50,7 +50,7 @@ export function BaseLayout({ children }: { children?: any }) {
       >
         <div
           id="radial-gradient"
-          _="on move(x,y) set my.style.left to (x-1500) set my.style.top to (y-1500)"
+          _="on move(x,y) set my.style.left to (x-500) set my.style.top to (y-500)"
         />
         {/* Notifications fall all here! */}
         <div id="notification" />
@@ -64,14 +64,14 @@ export function BaseLayout({ children }: { children?: any }) {
               Built by{" "}
               <a
                 href={siteConfig.links.twitter}
-                class={buttonStyles({ intent: "link", class: "lowercase" })}
+                class={button({ intent: "link", class: "lowercase" })}
               >
                 bojkomatias
               </a>
               .<br class="block sm:hidden" /> Source code available on{" "}
               <a
                 href={siteConfig.links.github}
-                class={buttonStyles({ intent: "link" })}
+                class={button({ intent: "link" })}
               >
                 Github
               </a>

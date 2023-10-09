@@ -3,9 +3,9 @@ import { Role } from "@/db/schema/user";
 import { dict } from "@/utils/dictionary";
 import { BaseLayout } from "../layout";
 import { Hover } from "../../components/hover-transition";
-import { Button } from "../../components/button";
 import { UserNavigation } from "@/modules/auth/user-nav";
 import { JWTPayloadSpec } from "@elysiajs/jwt";
+import { button } from "@/components/button";
 
 type User = {
   id: string;
@@ -41,18 +41,18 @@ const Tabs = ({ role }: { role: Role }) => (
         .filter((link) => link.clearance?.includes(role))
         .map((item) => (
           <Hover.Item class="relative mb-1.5 hover:text-accent-foreground">
-            <Button
+            <button
+              class={button()}
               hx-get={item.href}
               hx-push-url="true"
               hx-target="#dashboard-content"
               hx-swap="innerHTML"
-              size="sm"
               _="init if window.location.pathname contains @hx-get then add .navigation-indicator end
               on htmx:afterOnLoad tell the target take .navigation-indicator"
             >
               <i class={item.icon} aria-hidden="true" />
               {dict.get(item.name)}
-            </Button>
+            </button>
           </Hover.Item>
         ))}
     </Hover>

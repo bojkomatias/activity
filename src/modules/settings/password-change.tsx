@@ -1,23 +1,22 @@
-import { Button } from "@/components/button";
-import Card from "@/components/card";
+import { button } from "@/components/button";
+import { card } from "@/components/card";
 import { Input } from "@/components/input";
 import { dict } from "@/utils/dictionary";
 
 export const PasswordChange = () => (
-  <Card class="border-destructive">
-    <Card.Header>
-      <Card.Title>{"Cambiar " + dict.get("password")}</Card.Title>
-      <Card.Description>
-        Los cambios se verán reflejados la proxima vez que ingreses
-      </Card.Description>
-    </Card.Header>
+  <div class={card().base()}>
+    <h2 class={card().title()}>{"Cambiar " + dict.get("password")}</h2>
+    <p class={card().description()}>
+      Los cambios se verán reflejados la proxima vez que ingreses
+    </p>
+
     <form
-      hx-patch="/d/password"
+      hx-patch="/api/settings/password"
       hx-target="#notification"
       hx-target-403="#notification"
       hx-swap="none"
     >
-      <Card.Content>
+      <div class={card().content()}>
         <Input
           name="currentPassword"
           placeholder="********"
@@ -32,12 +31,12 @@ export const PasswordChange = () => (
           required="true"
           rb
         />
-      </Card.Content>
-      <Card.Footer class="justify-end bg-destructive/20">
-        <Button intent="destructive" size="sm">
+      </div>
+      <div class={card().footer({ class: "justify-end bg-destructive/20" })}>
+        <button class={button({ intent: "destructive", size: "sm" })}>
           {dict.get("update")} {dict.get("password")}
-        </Button>
-      </Card.Footer>
+        </button>
+      </div>
     </form>
-  </Card>
+  </div>
 );

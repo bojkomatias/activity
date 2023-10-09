@@ -35,9 +35,7 @@ const settingsPage = new Elysia({
             <div
               class={cx(
                 "mt-20",
-                user.password
-                  ? ""
-                  : "pointer-events-none select-none opacity-75 saturate-0",
+                user.password ? "" : "pointer-events-none select-none",
               )}
             >
               <PasswordChange />

@@ -1,5 +1,5 @@
-import { Button } from "@/components/button";
-import Dropdown from "@/components/dropdown";
+import { button } from "@/components/button";
+import { dropdown, _trigger, _content } from "@/components/dropdown";
 import { Hover } from "@/components/hover-transition";
 import { dict } from "@/utils/dictionary";
 import { JWTPayloadSpec } from "@elysiajs/jwt";
@@ -15,32 +15,35 @@ type User = {
 export const UserNavigation = ({ user }: { user: User }) => {
   if (!user) return <></>;
   return (
-    <Dropdown class="mr-4">
-      <Dropdown.Trigger
-        size="icon"
-        class="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-muted/50 text-lg font-semibold uppercase text-muted-foreground ring-1 ring-border hover:bg-muted hover:text-foreground hover:ring-ring/50 hover:ring-offset-2 hover:ring-offset-background focus:ring-offset-2 focus:ring-offset-background"
+    <div class={dropdown().base({ class: "mr-4" })}>
+      <button
+        class={button({
+          class:
+            "flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-muted/50 text-lg font-semibold uppercase text-muted-foreground ring-1 ring-border hover:bg-muted hover:text-foreground hover:ring-ring/50 hover:ring-offset-2 hover:ring-offset-background focus:ring-offset-2 focus:ring-offset-background",
+        })}
+        _={_trigger}
       >
         {user.image ? (
           <img src={user.image} class="h-8 w-8" alt="User image" />
         ) : (
           <span>{user.name.substring(0, 1)}</span>
         )}
-      </Dropdown.Trigger>
+      </button>
 
-      <Dropdown.Content class="mt-2">
-        <Dropdown.Header>
+      <div class={dropdown().content()} _={_content}>
+        <div class={dropdown().header()}>
           <div class="text-sm font-semibold" safe>
             {user.name}
           </div>
           <div class="text-xs font-light leading-5 text-muted-foreground" safe>
             {user.email}
           </div>
-        </Dropdown.Header>
-        <Dropdown.Separator />
+        </div>
+        <div class={dropdown().separator()} />
         <Hover>
           <Hover.Item>
-            <Dropdown.Item
-              as="a"
+            <button
+              class={dropdown().item()}
               hx-get="/dashboard/settings"
               hx-push-url="true"
               hx-target="body"
@@ -48,40 +51,44 @@ export const UserNavigation = ({ user }: { user: User }) => {
             >
               {dict.get("settings")}
               <i class="i-lucide-settings" />
-            </Dropdown.Item>
+            </button>
           </Hover.Item>
 
-          <Dropdown.Separator />
+          <div class={dropdown().separator()} />
 
           <Hover.Item>
-            <Dropdown.Item
-              as="a"
+            <button
+              class={dropdown().item()}
               hx-get="/"
               hx-push-url="true"
               hx-target="body"
               hx-swap="outerHTML"
             >
               Página de inicio <i class="i-lucide-external-link" />
-            </Dropdown.Item>
+            </button>
           </Hover.Item>
           <Hover.Item>
-            <Dropdown.Item
+            <button
+              class={dropdown().item({ class: "font-bold" })}
               hx-post="/api/auth/logout"
               hx-push-url="true"
               hx-target="body"
               hx-swap="outerHTML"
-              class="font-semibold"
             >
               {dict.get("logout")}
               <i class="i-lucide-log-out" />
-            </Dropdown.Item>
+            </button>
           </Hover.Item>
         </Hover>
-        <Dropdown.Separator />
-        <Button intent="primary" size="sm" class="m-2 w-56">
+
+        <div class={dropdown().separator()} />
+
+        <button
+          class={button({ intent: "primary", size: "sm", class: "m-2 w-56" })}
+        >
           Upgrade to Pro
-        </Button>
-      </Dropdown.Content>
-    </Dropdown>
+        </button>
+      </div>
+    </div>
   );
 };

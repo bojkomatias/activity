@@ -17,42 +17,44 @@
   }
 
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --background: 240 100% 100%;
+    --foreground: 191 100% 6%;
+    --card: 0 0% 95%;
+    --card-foreground: 192 100% 8%;
+    --muted: 24 22% 93%;
+    --muted-foreground: 191 100% 12%;
 
-    --primary: 200 88% 37%;
-    --primary-foreground: 0 0% 98%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --primary: 35 100% 58%;
+    --primary-foreground: 191 100% 6%;
+    --secondary: 190 42% 65%;
+    --secondary-foreground: 191 100% 6%;
+    --accent: 177 100% 21%;
+    --accent-foreground: 0 0% 98%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 191 100% 12%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --background: 191 100% 6%;
+    --foreground: 240 100% 100%;
+    --card: 192 100% 8%;
+    --card-foreground: 0 0% 95%;
+    --muted: 191 100% 12%;
+    --muted-foreground: 24 22% 93%;
 
-    --primary: 336 88% 45%;
-    --primary-foreground: 0 0% 98%;
-    --accent: 240 3.7% 15.9%;
+    --primary: 35 100% 58%;
+    --primary-foreground: 191 100% 6%;
+    --secondary: 190 42% 65%;
+    --secondary-foreground: 191 100% 6%;
+    --accent: 177 100% 21%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 24 22% 93%;
   }
 }
 
@@ -68,7 +70,7 @@
   }
 
   #radial-gradient {
-    @apply bg-gradient-radial pointer-events-none fixed -z-10 h-[3000px] w-[3000px] rounded-full from-muted/40 to-transparent to-60%;
+    @apply pointer-events-none fixed -z-10 h-[1000px] w-[1000px] rounded-full bg-gradient-radial from-accent/5 via-muted/5 via-25% to-transparent to-70%;
   }
 }
 

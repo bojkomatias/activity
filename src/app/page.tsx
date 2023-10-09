@@ -1,11 +1,10 @@
 import Elysia from "elysia";
 import { MarketingLayout } from "@/app/marketing-layout";
 import setup from "@/config/setup";
-import { Button } from "@/components/button";
-import { button } from "@/components/buttonV2";
-import { card } from "@/components/cardV2";
+import { button } from "@/components/button";
+import { card } from "@/components/card";
 
-const { base, header, title, description, footer, content } = card();
+const { base, title, description, footer, content } = card();
 const marketingPage = new Elysia({
   name: "marketing-page",
 })
@@ -23,36 +22,29 @@ const marketingPage = new Elysia({
       app.get("/", async () => {
         return (
           <MarketingLayout>
-            <Button
+            <button
               hx-get="/dashboard/settings"
               hx-push-url="true"
               hx-target="body"
               hx-swap="outerHTML"
             >
               Settings
-            </Button>
-            <Button hx-get="/parallel" hx-swap="none">
-              Get Parallel Routes
-            </Button>
-            <Button
+            </button>
+
+            <button
               hx-get="/intercepted"
               hx-target="#sape"
               hx-swap="outerHTML"
               hx-push-url="true"
             >
               Get Intercepted Routes
-            </Button>
+            </button>
             <div id="sape" />
-            <div class="mx-auto mt-20 grid max-w-4xl grid-cols-2">
-              <div id="parallel-1" />
-              <div id="parallel-2" />
-            </div>
+
             <div class="mx-auto max-w-6xl">
               <div class={base()}>
-                <div class={header()}>
-                  <h2 class={title()}>Activity</h2>
-                  <h3 class={description()}>Add your activity</h3>
-                </div>
+                <h2 class={title()}>Activity</h2>
+                <h3 class={description()}>Add your activity</h3>
                 <div class={content()}>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Blanditiis quo quibusdam suscipit voluptatum earum totam rerum
@@ -63,6 +55,19 @@ const marketingPage = new Elysia({
                 <div class={footer()}>
                   <button class={button()}>Sape</button>
                 </div>
+              </div>
+              <div class="space-x-4">
+                <button class={button({ intent: "outline", size: "sm" })}>
+                  Click me
+                </button>
+                <button class={button({ intent: "primary" })}>Click me</button>
+                <button class={button({ intent: "secondary", size: "xs" })}>
+                  Click me
+                </button>
+                <button class={button({ intent: "destructive" })}>
+                  Click me
+                </button>
+                <button class={button({ intent: "accent" })}>Click me</button>
               </div>
             </div>
           </MarketingLayout>
